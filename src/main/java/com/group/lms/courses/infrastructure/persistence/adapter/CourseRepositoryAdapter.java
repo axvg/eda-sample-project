@@ -1,5 +1,7 @@
 package com.group.lms.courses.infrastructure.persistence.adapter;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
 
 import com.group.lms.courses.domain.model.Course;
@@ -16,5 +18,10 @@ public class CourseRepositoryAdapter implements CourseRepository{
     @Override
     public Course save(Course course) {
         return jpaCourseRepository.save(course);
+    }
+
+    @Override
+    public Optional<Course> findById(Long id) {
+        return jpaCourseRepository.findById(id);
     }
 }

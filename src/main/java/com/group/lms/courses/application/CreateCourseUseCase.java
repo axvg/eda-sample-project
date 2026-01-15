@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CourseUseCase {
+public class CreateCourseUseCase {
     private final CourseRepository repository;
     private final EventPublisher eventPublisher;
 

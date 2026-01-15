@@ -1,5 +1,7 @@
 package com.group.lms.courses.application;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 
 import com.group.lms.courses.domain.event.CourseCreatedEvent;
@@ -23,6 +25,7 @@ public class CourseUseCase {
             .description(description)
             .instructor(instructor)
             .status(Course.CourseStatus.DRAFT)
+            .createdAt(LocalDateTime.now())
             .build();
 
         Course saved = repository.save(course);

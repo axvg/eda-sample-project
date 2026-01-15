@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.group.lms.courses.application.CourseUseCase;
+import com.group.lms.courses.application.CreateCourseUseCase;
 import com.group.lms.courses.domain.model.Course;
 import com.group.lms.courses.infrastructure.web.dto.CreateCourseRequest;
 
@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/courses")
 @RequiredArgsConstructor
 public class CourseController {
-    private final CourseUseCase courseUseCase;
+    private final CreateCourseUseCase courseUseCase;
 
     @PostMapping
     public ResponseEntity<Course> createCourse(@RequestBody CreateCourseRequest request) {

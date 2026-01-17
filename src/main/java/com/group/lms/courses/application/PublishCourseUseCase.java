@@ -1,7 +1,5 @@
 package com.group.lms.courses.application;
 
-import org.springframework.stereotype.Service;
-
 import com.group.lms.courses.domain.event.CoursePublishedEvent;
 import com.group.lms.courses.domain.model.Course;
 import com.group.lms.courses.domain.repository.CourseRepository;
@@ -12,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-@Service
 @Slf4j
 @RequiredArgsConstructor
 public class PublishCourseUseCase {

@@ -1,5 +1,7 @@
 package com.group.lms.shared.infrastructure.dlq;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 import org.springframework.stereotype.Component;
@@ -21,5 +23,9 @@ public class DeadLetterQueue {
         );
         failedEvents.add(failedEvent);
         log.error("Event added to DLQ: {} [{}]", event.getEventType(), event.getEventId());
+    }
+
+    public List<FailedEvent> getFailedEvents() {
+        return new ArrayList<>(failedEvents);
     }
 }

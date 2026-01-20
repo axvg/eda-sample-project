@@ -10,13 +10,17 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.group.lms.courses.domain.event.CoursePublishedEvent;
+import com.group.lms.shared.infrastructure.dlq.DeadLetterQueue;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class PaymentHandler {
     private final Random random = new Random();
+    private final DeadLetterQueue dlq;
 
     @Async("eventExecutor") // no genera bloqueos
     @EventListener
@@ -39,6 +43,6 @@ public class PaymentHandler {
     public void recover(RuntimeException e, CoursePublishedEvent event) {
         log.error("All retry attempts exhausted for course id: {}", event.getCourseId());
         // Store in DLQ or take alternative action
-        // TODO: Implement DLQ storage logic
+        dlq.add(event, e);
     }
 }

@@ -14,6 +14,7 @@ public class RabbitMQConfig {
     public static final String COURSE_QUEUE = "lms.queue";
     // routing keys
     public static final String COURSE_CREATED_RK = "course.created";
+    public static final String COURSE_PUBLISHED_RK = "course.published";
 
     @Bean
     public TopicExchange eventExchange() {

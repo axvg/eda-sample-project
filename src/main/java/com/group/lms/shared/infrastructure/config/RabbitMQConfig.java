@@ -6,9 +6,11 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.TopicExchange;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 
+@Configuration
 public class RabbitMQConfig {
     public static final String EXCHANGE_NAME = "lms.event";
     public static final String COURSE_QUEUE = "lms.queue";
@@ -32,6 +34,14 @@ public class RabbitMQConfig {
             .bind(courseQueue())
             .to(eventExchange())
             .with(COURSE_CREATED_RK);
+    }
+
+    @Bean
+    public Binding coursePublishedBinding() {
+        return BindingBuilder
+            .bind(courseQueue())
+            .to(eventExchange())
+            .with(COURSE_PUBLISHED_RK);
     }
 
     @Bean
